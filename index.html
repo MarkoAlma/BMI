@@ -32,6 +32,12 @@ input::-webkit-inner-spin-button {
         border-radius: 10px;
         padding: 5px;
         min-height: 20px;
+        
+    }
+
+    input[type='number']:hover{
+        transition: 0.2s;
+        background-color: rgb(210, 230, 236);
     }
 
     input[type='button'] {
@@ -39,12 +45,13 @@ input::-webkit-inner-spin-button {
         padding: 5px;}
 
     input[type='button']:hover {
-        transition: 0.5s;
+        transition: 0.7s;
         cursor: pointer;
+        background-color: lightblue;
     }
     
 </style>
-<body class="container">
+<body class="container mt-3">
     <div style="background: rgb(0,0,0);
     background: linear-gradient(45deg, rgba(0,0,0,0.9472163865546218) 11%, rgba(180,180,180,0.8407738095238095) 100%, rgba(255,255,255,1) 100%);
     width: 500px; height: 8;">
@@ -59,10 +66,9 @@ input::-webkit-inner-spin-button {
             <input type="number" name="" id="suly">
         </div> <br>
         <div class="row w-100">
-        <input type="button" value="Számol!" onclick="kalk()" style="padding: 10px; margin: 5px;" class="col-6"> </div><br>
-        <span class="row w-100">
-            <p id="a" class="col-6 d-flex justify-content-center"></p>
-            <p id="b" class="col-6"></p>
+        <input type="button" value="Számol!" onclick="kalk()" style="padding: 10px; margin: 5px;" class="col-6">
+        <input type="button" value="Töröl!" onclick="torol()" style="padding: 10px; margin: 5px;" class="col-6">  </div>
+        <span class="row w-100 eredmeny">
         </span>
     </form>
 </div>
@@ -83,8 +89,14 @@ input::-webkit-inner-spin-button {
         if (!s || !m) return
         bmi = (s/m).toFixed(2)
         let result = rules.find(obj => bmi>obj.min && bmi <= obj.max)
-        document.querySelector('#a').innerHTML="BMI: "+bmi
-        document.querySelector('#b').innerHTML=result.kategoria+result.emoji
+        document.querySelector(".eredmeny").innerHTML=`<p id="a" class="col-6 d-flex justify-content-center">BMI: ${bmi}</p> <p id="b" class="col-6"> ${result.kategoria+result.emoji}</p>`
+    }
+
+    function torol () {
+document.getElementById("suly").value=' '
+document.getElementById("magassag").value=' '
+document.getElementById("a").remove()
+document.getElementById("b").remove()
     }
     </script>
 </body>
